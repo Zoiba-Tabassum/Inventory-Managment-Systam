@@ -1,10 +1,14 @@
+#ifndef PRODUCT_H
 #define PRODUCT_H
 
 #include<iostream>
 #include<string>
 
+using namespace std;
+
 class ProductNode{
-    int Id;
+    public:
+    int id;
     string name;
     static int quantity;
     double price;
@@ -13,15 +17,15 @@ class ProductNode{
     ProductNode *prev;
    
     public:
-    ProductNode( int id,string& name,int quantity,double price, int supplierid){
-        this->Id = id;
-        this->name = name;
+    ProductNode( int id,string n,int quantity,double price, int supplierid){
+        this->id = id;
+        this->name = n;
         this->price = price;
         this->quantity = quantity;
         this->supplierid = supplierid;
         next = NULL;
-        prev = NULL;
     }
 
 };
 
+#endif

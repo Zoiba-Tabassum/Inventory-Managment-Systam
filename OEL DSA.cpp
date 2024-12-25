@@ -1,53 +1,179 @@
 #include<iostream>
-
-#include "Product.h"
-#include "Supplier.h"
-
 #include<string>
+#include<vector>
 
+#include "InventoryManagementSystem.h"
 
 using namespace std;
 
 int main(){
-    Product product;
-    Supplier *supplier;
-
+    int size = 0;
+    vector<int> prodId, prodquantity;  // Use vector instead of array
     int choice;
+    InventoryManagementSystem imc;
+
+    cout << "WELOCME TO C++\n"
+         << "||          ||\\  /||          ---\n"
+         << "||NVENTORY  || \\/ ||ANAGMENT  ||__ YSTEM \n"
+         << "||          ||    ||             __||\n";
     do{
         cout << "Enter Your Choice From The Given Options:\n" << endl;
-        cout << "1. Adding new  product\n";
-        cout << "2. Adding Supplier\n";
-        cout << "3. Searching by supplier name\n ";
-        cout << "4. Searching by supplier ID\n";
-        cout << "5. Searching by product ID\n";
-        cout << "6. Searching by Product ID\n";
-        cout << "7. Sorting by price\n";
-        cout << "8. Sorting by Quantity\n";
-        cout << "9. Order Product\n";
-        cout << "10. Exit\n";
+        cout << "1.  Adding New  Product\n"
+             << "2.  Add New Supplier\n"
+             << "3.  Place Order\n"
+             << "4.  Generate Invoice\n"
+             << "5.  Check Stock Level\n"
+             << "6.  Search Product By Id \n"
+             << "7.  Search Product by Name\n"
+             << "8.  Search Supplier By Id\n"
+             << "9.  Search Supplier By Category\n"
+             << "10. Display Products\n"
+             << "11. Sort Products By Price\n "
+             << "12. Sort Products By Quantity\n"
+             << "13. Exit" << endl;
 
         cin >> choice;
         switch(choice){
-            case'9':
+            case 1:{
+                int id;
                 string name;
                 int quantity;
-                cout << "What do you want to order?";
-                cout << "\n Enter Product name: ";
+                double price;
+                int supplierid;
+                char c;
+                do{
+                    cout << "Enter Product:";
+                    cout << "\n Id:\t";
+                    cin >> id; 
+                    cout << "\n Name:\t";
+                    cin >> name;
+                    cout << "\n Quantity:\t";
+                    cin >> quantity;
+                    cout << "\n Price\t";
+                    cin >> price;
+                    cout << "\n Supplier Id:\t";
+                    cin >> supplierid;
+
+                    imc.addProduct(id, name, quantity, price, supplierid);
+
+                    cout << "\nDo you want to add more Products (enter 'y' for yes) :\t";
+                    cin >> c;
+                } while (c == 'y');
+                break;
+            }
+            case 2:{
+                int id;
+                string name;
+                string category;
+                string contact;
+                char c;
+                do{
+                    cout << "Enter Product:";
+                    cout << "\n Id:\t";
+                    cin >> id; 
+                    cout << "\n Name:\t";
+                    cin >> name;
+                    cout << "\n Product Category:\t";
+                    cin >> category;
+                    cout << "\n Contact\t";
+                    cin >> contact;
+
+                    imc.addSupplier(id, name, category, contact);
+
+                    cout << "\nDo you want to add more Products (enter 'y' for yes) :\t";
+                    cin >> c;
+                } while (c == 'y');
+                break;
+            }
+
+            case 3:{
+                int id, quantity;
+                char c;
+                do{
+                    imc.display();
+                    cout << "\nEnter Product Id:\t";
+                    cin >> id;
+                    prodId.push_back(id);  // Using vector
+                    cout << "\nEnter Quantity:\t";
+                    cin >> quantity;
+                    prodquantity.push_back(quantity);  // Using vector
+
+                    imc.placeOrder(id, quantity);
+                    cout << "Do you want to order more?(enter 'y' for yes) :\t";
+                    cin >> c;
+                } while (c == 'y');
+                break;
+            }
+
+            case 4:{
+                imc.invoice(prodId, prodquantity);  // Passing vectors
+                break;
+            }
+
+            case 5:{
+                imc.stockAlert();
+                break;
+            }
+
+            case 6:{
+                int id;
+                cout << "\nEnter Product Id you want to search:\t";
+                cin >> id;
+                imc.searchProductById(id);
+                break;
+            }
+
+            case 7:{
+                string name;
+                cout << "\nEnter Product Name you want to search:\t";
                 cin >> name;
-                cout << "Enter Quantity you need: ";
-                cin >> quantity;
-                void OrderProduct(name,quantity);
-            
-            
+                imc.searchProductByName(name);  // Missing function call
+                break;
+            }
+
+            case 8:{
+                int id;
+                cout << "\nEnter supplier Id you want to search\n";
+                cin >> id;
+                imc.searchSupplierById(id);
+                break;
+            }
+
+            case 9:{
+                string category;
+                cout << "\nEnter supplier category you want to search:\t";
+                cin >> category;
+                imc.searchSupplierByCategory(category);
+                break;
+            }
+
+            case 10:{
+                imc.display();
+                break;
+            }
+            case 11:{
+                imc.sortByPrice();
+                break;
+            }
+
+            case 12:{
+                imc.sortByQuantity();  // Corrected function call
+                break;
+            }
+
+            case 13:{
+                cout << "\n===================\n";
+                cout << "       EXIT        \n";
+                cout << "===================\n";
+                break;
+            }
+
+            default:{
+                cout << "Invalid choice. Please try again.\n";
+                break;
+            }
         }
-    } while (choice != 10);
+    } while (choice != 13);
 
-    
-    
-
-
-}
-
-void OrderProduct(string,int){
-    
+    return 0;
 }
