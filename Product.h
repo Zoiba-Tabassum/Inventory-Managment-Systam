@@ -10,7 +10,7 @@ class ProductNode{
     public:
     int id;
     string name;
-    static int quantity;
+    int quantity;
     double price;
     int supplierid;
     ProductNode *next;
@@ -25,7 +25,6 @@ class ProductNode{
         this->supplierid = supplierid;
         next = NULL;
     }
-
 };
 
 #endif

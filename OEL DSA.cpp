@@ -12,12 +12,12 @@ int main(){
     int choice;
     InventoryManagementSystem imc;
 
-    cout << "WELOCME TO C++\n"
-         << "||          ||\\  /||          ---\n"
-         << "||NVENTORY  || \\/ ||ANAGMENT  ||__ YSTEM \n"
-         << "||          ||    ||             __||\n";
+    cout << "WELCOME TO C++\n"
+         << "||          |\\  /|            __\n"
+         << "||NVENTORY  | \\/ |ANAGEMENT  |__ YSTEM \n"
+         << "||          |    |            __|\n";
     do{
-        cout << "Enter Your Choice From The Given Options:\n" << endl;
+        cout << "\nEnter Your Choice From The Given Options:\n" << endl;
         cout << "1.  Adding New  Product\n"
              << "2.  Add New Supplier\n"
              << "3.  Place Order\n"
@@ -28,9 +28,10 @@ int main(){
              << "8.  Search Supplier By Id\n"
              << "9.  Search Supplier By Category\n"
              << "10. Display Products\n"
-             << "11. Sort Products By Price\n "
+             << "11. Sort Products By Price\n"
              << "12. Sort Products By Quantity\n"
-             << "13. Exit" << endl;
+             << "13. Exit\n"
+             << endl;
 
         cin >> choice;
         switch(choice){
